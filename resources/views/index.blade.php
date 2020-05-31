@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-Index
-
+<livewire:url-input />
 @endsection

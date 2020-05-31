@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="has-navbar-fixed-top has-spaced-navbar-fixed-top">
 
 <head>
   <meta charset="utf-8">
@@ -10,19 +10,10 @@
 </head>
 
 <body>
-  <section class="section">
-    <div class="container">
-      <h1 class="title">
-        Hello World
-      </h1>
-      <p class="subtitle">
-        My first website with <strong>Bulma</strong>!
-      </p>
-    </div>
+  <livewire:nav>
     @yield('content')
-  </section>
-  @livewireScripts
-  <script src="{{ mix('js/app.js') }}"></script>
+    @livewireScripts
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 
 </html>
