@@ -33,6 +33,8 @@ return [
     'twitter' => [
         'key' => env('TWITTER_API_KEY'),
         'secret' => env('TWITTER_API_SECRET'),
+        'token' => env('TWITTER_API_ACCESS_TOKEN'),
+        'token_secret' => env('TWITTER_API_ACCESS_TOKEN_SECRET'),
     ],
 
 ];
