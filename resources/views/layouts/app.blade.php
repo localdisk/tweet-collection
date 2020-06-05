@@ -7,14 +7,17 @@
   <title>Hello Bulma!</title>
   <livewire:styles />
   <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-  <script src="{{ mix('js/app.js') }}"></script>
   <livewire:scripts />
+  <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 
 <body>
   <livewire:nav />
   @yield('content')
   @stack('scripts')
+
+  <livewire:toast />
+  {{-- <x-head-tag title="Tweet Collection" /> --}}
 </body>
 
 </html>

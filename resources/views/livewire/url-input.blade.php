@@ -3,7 +3,7 @@
 
     <label for="url" class="label">Tweet URL</label>
     <p class="control">
-      <input wire:model="url" wire:keydown.enter="viewTweet" type="text" name="url" id="url" class="input">
+      <input wire:model.debounce.500ms="url" wire:keydown.enter="viewTweet" type="text" name="url" id="url" class="input">
     </p>
 
     @error('url')
@@ -22,7 +22,8 @@
         {{-- add button --}}
         <div class="field has-addons">
           <div class="control is-expanded">
-            <input class="input" wire:model="tags" id="tags" type="text" data-type="tags" placeholder="タグ">
+            <input class="input" id="tagify" type="text" data-type="tags" placeholder="タグ">
+            <input type="hidden" wire:model="tags" id="tags">
           </div>
           <div class="control">
             <button wire:click="addLike" class="button is-primary">お気に入りに追加</button>

@@ -3,11 +3,14 @@
 namespace App\Http\Livewire;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
+use App\Models\Tag;
 use App\Models\Tweet;
 use App\Rules\TwitterUrl;
+use Ausi\SlugGenerator\SlugGenerator;
 use Illuminate\View\View;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use Livewire\Redirector;
@@ -46,12 +49,12 @@ class UrlInput extends Component
         try {
             $response = Http::get($oembedUrl);
 
-            if ($response->failed()) {
-                $this->addError('error', 'tweetを取得できませんでした');
-                $this->oembed = '';
-            } else {
+            if ($response->successful()) {
                 $json = $response->json();
                 $this->oembed = $json['html'];
+            } else {
+                $this->addError('error', 'tweetを取得できませんでした');
+                $this->oembed = '';
             }
         } catch (\Throwable $th) {
             throw $th;
@@ -65,19 +68,31 @@ class UrlInput extends Component
      * @throws BindingResolutionException
      * @throws RouteNotFoundException
      */
-    public function addLike(): Redirector
+    public function addLike(SlugGenerator $generator): Redirector
     {
+        dd($this->tags);
         // TODO キュー経由でDBへ
         $twitter = app(TwitterOAuth::class);
         $tweetId = $this->getTweetId($this->url);
         $result = $twitter->get('/statuses/show', ['id' => $tweetId]);
 
-        Tweet::create([
-            'user_id' => 1,
-            'html' => $this->oembed,
-            'text' => $result->text,
-            'url' => $this->url,
-        ]);
+        DB::transaction(function () use ($result, $generator) {
+            $tweet = Tweet::create([
+                'user_id' => 1,
+                'html' => $this->oembed,
+                'text' => $result->text,
+                'url' => $this->url,
+            ]);
+
+            $tagsArray = array_map('trim', array_filter(explode(',', $this->tags), 'strlen'));
+
+            foreach ($tagsArray as $tag) {
+                $tweet->tags()->attach(Tag::firstOrCreate([
+                    'name' => $tag,
+                    'slug' => $generator->generate($tag),
+                ]));
+            }
+        });
 
         return redirect()->route('tweets.index');
     }
