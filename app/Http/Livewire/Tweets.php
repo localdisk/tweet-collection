@@ -9,8 +9,9 @@ class Tweets extends Component
 {
     public function render()
     {
-        $tweets = Tweet::where('user_id', 1)->get();
+        $tweets = Tweet::where('user_id', 1)->with('tags')->latest()->get();
+        $days = $tweets->groupBy(fn ($tweet) => $tweet->created_at->format('Y-m-d'));
 
-        return view('livewire.tweets.index', ['tweets' => $tweets]);
+        return view('livewire.tweets.index', ['days' => $days]);
     }
 }

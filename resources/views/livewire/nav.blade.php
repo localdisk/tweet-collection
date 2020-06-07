@@ -17,7 +17,8 @@
     <div class="navbar-menu">
       {{-- start --}}
       <div class="navbar-start">
-        <a href="" class="navbar-item">Home</a>
+        <a wire:click.prevent="home" class="navbar-item">Home</a>
+        <a wire:click.prevent="tweets" class="navbar-item">Tweet</a>
       </div>
     </div>
 
