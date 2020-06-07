@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Ausi\SlugGenerator\SlugGenerator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use InvalidArgumentException;
 
 /**
  * App\Models\Tag.
@@ -40,5 +42,18 @@ class Tag extends Model
     public function tweets(): BelongsToMany
     {
         return $this->belongsToMany(Tweet::class);
+    }
+
+    /**
+     * set slug attribute.
+     *
+     * @param string $slug
+     * @return void
+     * @throws InvalidArgumentException
+     */
+    public function setSlugAttribute(string $slug)
+    {
+        $generator = new SlugGenerator();
+        $this->attributes['slug'] = $generator->generate($slug);
     }
 }

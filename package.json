@@ -18,7 +18,6 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
-        "@yaireo/tagify": "^3.10.2",
         "bulma": "^0.8.2",
         "turbolinks": "^5.2.0"
     }

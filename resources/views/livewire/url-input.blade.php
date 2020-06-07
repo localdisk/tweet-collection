@@ -15,15 +15,13 @@
     @enderror
 
     {{-- oembed --}}
-    @if (! empty($oembed))
-    <div class="columns is-centered oembed">
+    <div class="columns is-centered oembed" style="@if(empty($oembed)) display:none @endif">
       <div class="column is-half">
 
         {{-- add button --}}
         <div class="field has-addons">
           <div class="control is-expanded">
-            <input class="input" id="tagify" type="text" data-type="tags" placeholder="タグ">
-            <input type="hidden" wire:model="tags" id="tags">
+            <livewire:tag />
           </div>
           <div class="control">
             <button wire:click="addLike" class="button is-primary">お気に入りに追加</button>
@@ -34,7 +32,6 @@
 
       </div>
     </div>
-    @endif
 
   </div>
 </div>

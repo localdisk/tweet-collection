@@ -81,6 +81,7 @@
     }
   }
 </style>
+
 <script data-turbolinks-eval="false">
   window.livewire.on('toast', (type, text, show) => {
 

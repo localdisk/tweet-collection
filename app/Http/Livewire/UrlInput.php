@@ -6,14 +6,13 @@ use Abraham\TwitterOAuth\TwitterOAuth;
 use App\Models\Tag;
 use App\Models\Tweet;
 use App\Rules\TwitterUrl;
-use Ausi\SlugGenerator\SlugGenerator;
 use Illuminate\View\View;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
-use Livewire\Redirector;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Throwable;
 
@@ -25,8 +24,11 @@ class UrlInput extends Component
     /** @var string */
     public string $oembed = '';
 
-    /** @var string */
-    public string $tags = '';
+    /** @var array */
+    public array $tags = [];
+
+    /** @var array */
+    protected $listeners = ['setTags'];
 
     /** @var string */
     private const OEMBED_URL = 'https://publish.twitter.com/oembed?url=';
@@ -61,22 +63,27 @@ class UrlInput extends Component
         }
     }
 
+    public function setTags(array $tags)
+    {
+        $this->tags = $tags;
+    }
+
     /**
      * add like.
      *
-     * @return Redirector
+     * @return RedirectResponse
      * @throws BindingResolutionException
+     * @throws Throwable
      * @throws RouteNotFoundException
      */
-    public function addLike(SlugGenerator $generator): Redirector
+    public function addLike()
     {
-        dd($this->tags);
         // TODO キュー経由でDBへ
         $twitter = app(TwitterOAuth::class);
         $tweetId = $this->getTweetId($this->url);
         $result = $twitter->get('/statuses/show', ['id' => $tweetId]);
 
-        DB::transaction(function () use ($result, $generator) {
+        DB::transaction(function () use ($result) {
             $tweet = Tweet::create([
                 'user_id' => 1,
                 'html' => $this->oembed,
@@ -84,12 +91,12 @@ class UrlInput extends Component
                 'url' => $this->url,
             ]);
 
-            $tagsArray = array_map('trim', array_filter(explode(',', $this->tags), 'strlen'));
+            // $tagsArray = array_map('trim', array_filter(explode(',', $this->tags), 'strlen'));
 
-            foreach ($tagsArray as $tag) {
+            foreach ($this->tags as $tag) {
                 $tweet->tags()->attach(Tag::firstOrCreate([
                     'name' => $tag,
-                    'slug' => $generator->generate($tag),
+                    'slug' => $tag,
                 ]));
             }
         });
