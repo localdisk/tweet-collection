@@ -63,7 +63,13 @@ class UrlInput extends Component
         }
     }
 
-    public function setTags(array $tags)
+    /**
+     * set tags.
+     *
+     * @param array $tags
+     * @return void
+     */
+    public function setTags(array $tags): void
     {
         $this->tags = $tags;
     }
@@ -90,8 +96,6 @@ class UrlInput extends Component
                 'text' => $result->text,
                 'url' => $this->url,
             ]);
-
-            // $tagsArray = array_map('trim', array_filter(explode(',', $this->tags), 'strlen'));
 
             foreach ($this->tags as $tag) {
                 $tweet->tags()->attach(Tag::firstOrCreate([

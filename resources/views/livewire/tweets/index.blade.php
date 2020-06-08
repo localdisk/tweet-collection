@@ -15,15 +15,15 @@
           <div class="oembed">
             {!! $tweet->html !!}
           </div>
-        @endforeach
-
-        <div class="tags">
-          @foreach ($tweet->tags as $tag)
-            <a class="tag is-info is-link">
-              {{ $tag->name }}
-            </a>
+          <div class="tags">
+            @foreach ($tweet->tags as $tag)
+              <a class="tag is-info is-link">
+                #{{ $tag->name }}
+              </a>
+            @endforeach
+          </div>
           @endforeach
-      </div>
+
       @endforeach
     </div>
   </div>
