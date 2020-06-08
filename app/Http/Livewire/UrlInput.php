@@ -103,6 +103,12 @@ class UrlInput extends Component
                     'slug' => $tag,
                 ]));
             }
+
+            session()->put('toast', [
+                'type' => 'info',
+                'text' => 'ツイートをお気に入りに追加しました',
+                'show' => true,
+            ]);
         });
 
         return redirect()->route('tweets.index');

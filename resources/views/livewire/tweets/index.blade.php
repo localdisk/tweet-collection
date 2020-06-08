@@ -35,6 +35,15 @@
   document.addEventListener("livewire:load", function(event) {
     window.livewire.hook('afterDomUpdate', () => {
       twttr.widgets.load();
+
+      // @if (session()->has('toast'))
+      //   @this.call('toast','toast',
+      //     '{{ session()->get('toast.type') }}',
+      //     '{{ session()->get('toast.text') }}',
+      //     '{{ session()->get('toast.show') }}',
+      //   )
+      // @endif
     });
-  });
+
+});
 </script>

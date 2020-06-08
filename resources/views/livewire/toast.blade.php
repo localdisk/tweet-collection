@@ -82,17 +82,21 @@
   }
 </style>
 
-<script data-turbolinks-eval="false">
-  window.livewire.on('toast', (type, text, show) => {
-
-    @this.set('type', type)
-    @this.set('text', text)
-    @this.set('show', show)
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
 
     const toast = document.getElementById('toast')
 
     setTimeout( () => {
       toast.classList.remove('show')
     }, 3000)
-  })
+
+    // window.livewire.on('toast', (type, text, show) => {
+
+    //   @this.set('type', type)
+    //   @this.set('text', text)
+    //   @this.set('show', show)
+
+    // })
+})
 </script>

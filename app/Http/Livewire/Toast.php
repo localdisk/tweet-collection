@@ -18,6 +18,17 @@ class Toast extends Component
     /** @var bool */
     public bool $show = false;
 
+    public function mount()
+    {
+        if (session()->has('toast')) {
+            $this->text = session()->get('toast.text');
+            $this->type = session()->get('toast.type');
+            $this->show = (bool) session()->get('toast.show');
+
+            session()->forget('toast');
+        }
+    }
+
     /**
      * render.
      *
