@@ -18,10 +18,8 @@
 
   document.addEventListener("livewire:load", function(event) {
     const tagField = document.getElementById("tagify")
-    if (tagField) {
-      tagify = new Tagify(tagField)
-      tagField.addEventListener("change", tagChange)
-    }
+    tagify = new Tagify(tagField)
+    tagField.addEventListener("change", tagChange)
   });
 
 </script>
