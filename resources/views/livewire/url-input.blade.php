@@ -15,7 +15,7 @@
     @enderror
 
     {{-- oembed --}}
-    <div class="columns is-centered oembed" style="@if(empty($oembed)) display:none @endif">
+    <div class="columns is-centered oembed tweet" style="@if(empty($oembed)) display:none @endif">
       <div class="column is-half">
 
         {{-- add button --}}
