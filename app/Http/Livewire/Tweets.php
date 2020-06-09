@@ -10,6 +10,7 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Throwable;
 
 class Tweets extends Component
 {
@@ -32,7 +33,14 @@ class Tweets extends Component
         }
     }
 
-    public function destroy(int $id)
+    /**
+     * destroy.
+     *
+     * @param int $id
+     * @return void
+     * @throws Throwable
+     */
+    public function destroy(int $id): void
     {
         DB::transaction(function () use ($id) {
             $tweet = Tweet::find($id);
@@ -41,6 +49,11 @@ class Tweets extends Component
 
             $this->emit('toast', 'is-success', 'tweetを削除しました');
         });
+    }
+
+    public function moveTags(string $slug)
+    {
+        return redirect()->route('tags.index', $slug);
     }
 
     /**

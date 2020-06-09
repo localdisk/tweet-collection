@@ -100,7 +100,6 @@ class UrlInput extends Component
             foreach ($this->tags as $tag) {
                 $tweet->tags()->attach(Tag::firstOrCreate([
                     'name' => $tag,
-                    'slug' => rawurlencode($tag),
                 ]));
             }
         });

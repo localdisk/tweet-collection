@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Tag;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 Route::livewire('/', 'url-input')->name('home');
 Route::livewire('/tweets', 'tweets')->name('tweets.index');
+Route::livewire('/tags/{tag:name}', 'tags')->name('tags.index');
+
+// Route::get('/tags/{tag}', function (Tag $tag) {
+//     dd($tag);
+// })->name('tags');
+// Route::livewire('/tags/{tag}', 'tags')->name('tags.index');
+// Route::livewire('tags', 'tags');
 // Route::post('/tweets');
 // Route::get('/', function () {
 //     return view('index');

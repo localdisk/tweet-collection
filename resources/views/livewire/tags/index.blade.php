@@ -1,12 +1,12 @@
 @section('title')
-    List - Tweets Collection
+    List({{ $tag }}) - Tweets Collection
 @endsection
 <div class="container">
 
   <div class="columns is-centered">
     <div class="column is-half">
 
-      <h3 class="is-size-4">お気に入りの Tweet</h3>
+      <h3 class="is-size-4">お気に入りのTag({{ $tag }})</h3>
 
       @foreach ($days as $key => $values)
 
@@ -52,5 +52,5 @@
     window.livewire.hook('afterDomUpdate', () => {
       twttr.widgets.load();
     });
-  });
+});
 </script>
