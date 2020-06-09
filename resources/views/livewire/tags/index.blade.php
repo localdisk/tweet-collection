@@ -52,5 +52,5 @@
     window.livewire.hook('afterDomUpdate', () => {
       twttr.widgets.load();
     });
-});
+  });
 </script>
