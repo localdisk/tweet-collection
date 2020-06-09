@@ -25,6 +25,12 @@ class Tags extends Component
         $this->tag = $tag;
     }
 
+    public function refresh(int $id)
+    {
+        $this->tag = Tag::find($id);
+        $this->render();
+    }
+
     /**
      * render.
      * @return View|Factory

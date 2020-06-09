@@ -45,12 +45,11 @@
     </div>
   </div>
 </div>
-
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8" data-turbolinks-eval="false"></script>
 <script data-turbolinks-eval="false">
-
   document.addEventListener("livewire:load", function(event) {
     window.livewire.hook('afterDomUpdate', () => {
-      twttr.widgets.load();
+      twttr.widgets.load()
     });
   });
 </script>

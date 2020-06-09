@@ -31,7 +31,7 @@
 
           <div class="tags">
             @foreach ($tweet->tags as $tag)
-            <a class="tag is-info is-link" wire:click="moveTags('{{ $tag->name }}')">
+            <a class="tag is-info is-link" wire:click="refresh('{{ $tag->id }}')">
                 #{{ $tag->name }}
               </a>
             @endforeach
@@ -45,12 +45,11 @@
     </div>
   </div>
 </div>
-
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8" data-turbolinks-eval="false"></script>
 <script data-turbolinks-eval="false">
-
   document.addEventListener("livewire:load", function(event) {
     window.livewire.hook('afterDomUpdate', () => {
-      twttr.widgets.load();
+      twttr.widgets.load()
     });
   });
 </script>
