@@ -5,26 +5,30 @@
 
       <h3 class="is-size-4">お気に入りの Tweet</h3>
 
-      @foreach ($days as $key=>$value)
+      @foreach ($days as $key => $values)
 
         <div class="divider">
           {{ $key }}
         </div>
 
-        @foreach ($value as $tweet)
+        @foreach ($values as $tweet)
           <div class="oembed">
             {!! $tweet->html !!}
           </div>
           <div class="tags">
+
             @foreach ($tweet->tags as $tag)
               <a class="tag is-info is-link">
                 #{{ $tag->name }}
               </a>
             @endforeach
+
           </div>
-          @endforeach
+        @endforeach
 
       @endforeach
+
+      {{ $tweets->links('partials.pagination-links') }}
     </div>
   </div>
 </div>
