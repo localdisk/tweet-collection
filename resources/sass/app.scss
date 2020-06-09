@@ -1,5 +1,6 @@
 @import "~bulma/bulma.sass";
 @import '@creativebulma/bulma-divider';
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap');
 
 .help {
   font-size: $size-6;
@@ -12,4 +13,9 @@
 
 div.buttons {
   margin-top: 10px;
+}
+
+.navbar-title {
+  font-family: 'Lato', sans-serif;
+  font-size: $size-5;
 }
