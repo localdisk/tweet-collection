@@ -12,18 +12,28 @@
         </div>
 
         @foreach ($values as $tweet)
-          <div class="oembed">
-            {!! $tweet->html !!}
-          </div>
-          <div class="tags">
 
+          <div class="columns">
+            <div class="column">
+              <div class="oembed">
+                {!! $tweet->html !!}
+              </div>
+            </div>
+            <div class="column">
+              <div class="buttons">
+                <button class="button is-danger" wire:click="destroy({{ $tweet->id }})">削除</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="tags">
             @foreach ($tweet->tags as $tag)
               <a class="tag is-info is-link">
                 #{{ $tag->name }}
               </a>
             @endforeach
-
           </div>
+
         @endforeach
 
       @endforeach

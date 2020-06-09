@@ -7,6 +7,7 @@ use Illuminate\View\View;
 use Illuminate\Contracts\View\Factory;
 use InvalidArgumentException;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -29,6 +30,17 @@ class Tweets extends Component
         if (session()->has('toast')) {
             $this->message = session()->pull('toast');
         }
+    }
+
+    public function destroy(int $id)
+    {
+        DB::transaction(function () use ($id) {
+            $tweet = Tweet::find($id);
+            $tweet->tags()->detach();
+            $tweet->delete();
+
+            $this->emit('toast', 'is-success', 'tweetを削除しました');
+        });
     }
 
     /**
