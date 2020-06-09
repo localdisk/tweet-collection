@@ -100,16 +100,12 @@ class UrlInput extends Component
             foreach ($this->tags as $tag) {
                 $tweet->tags()->attach(Tag::firstOrCreate([
                     'name' => $tag,
-                    'slug' => $tag,
+                    'slug' => rawurlencode($tag),
                 ]));
             }
-
-            session()->put('toast', [
-                'type' => 'info',
-                'text' => 'ツイートをお気に入りに追加しました',
-                'show' => true,
-            ]);
         });
+
+        session()->flash('toast', ['type' => 'is-success', 'message' => 'tweetをお気に入りに追加しました']);
 
         return redirect()->route('tweets.index');
     }

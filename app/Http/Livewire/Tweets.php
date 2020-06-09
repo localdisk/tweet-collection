@@ -11,6 +11,16 @@ use Livewire\Component;
 
 class Tweets extends Component
 {
+    public $message = [];
+
+    public function mount()
+    {
+        $this->message = [];
+        if (session()->has('toast')) {
+            $this->message = session()->pull('toast');
+        }
+    }
+
     /**
      * render.
      *

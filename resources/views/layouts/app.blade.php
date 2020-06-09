@@ -12,6 +12,8 @@
 
   <livewire:scripts />
   <script src="{{ mix('js/app.js') }}" defer></script>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
   @stack('scripts')
 </head>
 
@@ -19,9 +21,9 @@
   <livewire:nav />
   @yield('content')
 
-  <livewire:toast />
   {{-- <x-head-tag title="Tweet Collection" /> --}}
 
+  @include('partials.toaster')
 </body>
 
 </html>

@@ -27,23 +27,18 @@
       @endforeach
     </div>
   </div>
-
 </div>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<script>
+<script data-turbolinks-eval="false">
+
   document.addEventListener("livewire:load", function(event) {
     window.livewire.hook('afterDomUpdate', () => {
       twttr.widgets.load();
-
-      // @if (session()->has('toast'))
-      //   @this.call('toast','toast',
-      //     '{{ session()->get('toast.type') }}',
-      //     '{{ session()->get('toast.text') }}',
-      //     '{{ session()->get('toast.show') }}',
-      //   )
-      // @endif
     });
+
+    @if($message)
+    window.livewire.emit('toast', '{{ $message['type'] }}', '{{ $message['message'] }}')
+    @endif
 
 });
 </script>
