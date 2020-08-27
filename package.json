@@ -20,7 +20,7 @@
     "dependencies": {
         "@creativebulma/bulma-divider": "^1.1.0",
         "bulma": "^0.9.0",
-        "bulma-toast": "^2.0.1",
+        "bulma-toast": "^2.0.3",
         "turbolinks": "^5.2.0"
     }
 }
