@@ -169,12 +169,12 @@
             "version": "7.0.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/caouecs/Laravel-lang.git",
+                "url": "https://github.com/caouecs/lang.git",
                 "reference": "2cb9932f781415f1669ce27d29e5b86399ab164a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/caouecs/Laravel-lang/zipball/2cb9932f781415f1669ce27d29e5b86399ab164a",
+                "url": "https://api.github.com/repos/caouecs/lang/zipball/2cb9932f781415f1669ce27d29e5b86399ab164a",
                 "reference": "2cb9932f781415f1669ce27d29e5b86399ab164a",
                 "shasum": ""
             },
@@ -204,6 +204,7 @@
                 "laravel",
                 "lpm"
             ],
+            "abandoned": "https://github.com/Laravel-Lang/lang",
             "time": "2020-08-23T08:17:21+00:00"
         },
         {
@@ -1778,16 +1779,16 @@
         },
         {
             "name": "predis/predis",
-            "version": "v1.1.3",
+            "version": "v1.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/predis/predis.git",
-                "reference": "2ce537d75e610550f5337e41b2a971417999b028"
+                "reference": "9930e933c67446962997b05201c69c2319bf26de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/predis/predis/zipball/2ce537d75e610550f5337e41b2a971417999b028",
-                "reference": "2ce537d75e610550f5337e41b2a971417999b028",
+                "url": "https://api.github.com/repos/predis/predis/zipball/9930e933c67446962997b05201c69c2319bf26de",
+                "reference": "9930e933c67446962997b05201c69c2319bf26de",
                 "shasum": ""
             },
             "require": {
@@ -1849,7 +1850,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-08-18T21:00:59+00:00"
+            "time": "2020-09-11T19:18:05+00:00"
         },
         {
             "name": "psr/container",
